@@ -1,0 +1,19 @@
+package propriedadeStatic;
+
+public class App {
+
+	public static void main(String[] args) {
+		User userA = new User("Nycolas", "Roberto");
+		User userB = new User("Joao", "Victor");
+		
+		
+		userA.setCount(1);
+		User userC = new User("Tiago", "Aguiar");
+		userC.setCount(2);
+		
+		System.out.println(userA.getCount());
+		System.out.println(userC.getCount());
+		
+	}
+
+}

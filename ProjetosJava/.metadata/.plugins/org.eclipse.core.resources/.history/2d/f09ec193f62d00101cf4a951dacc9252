@@ -1,0 +1,43 @@
+package propriedadeStatic;
+
+public class User {
+	private String firstName;
+	private String lastName;
+	private String password;
+	
+	private static int count = 0;
+	
+	
+	
+	public User(String firstname, String lastname) {
+		this.firstName = firstname;
+		this.lastName = lastname;
+	}
+	public void setFirstname(String firstname) {
+		this.firstName = firstname;
+	}
+	public String getFirstname() {
+		return this.firstName;
+	}
+
+	public void setLastname(String lastname) {
+		this.lastName = lastname;
+	}
+	public String getLastname() {
+		return this.lastName;
+	}
+	
+	public void setPassword(String password) {
+		this.password = password;
+	}
+	public String getPassword() {
+		return this.password;
+	}
+	
+	public void setCount(int count) {
+		this.count += count;
+	}
+	public int getCount() {
+		return this.count;
+	}
+}

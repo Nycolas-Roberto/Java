@@ -1,0 +1,11 @@
+package propriedadeStatic;
+
+public class App {
+
+	public static void main(String[] args) {
+		User userA = new User("Nycolas", "Roberto");
+		User userB = new User("Joao", "Victor");
+		
+	}
+
+}

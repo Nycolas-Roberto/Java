@@ -1,0 +1,60 @@
+package eletronic.box;
+
+import java.util.Scanner;
+// \|
+public class EletronicBox {
+
+	static double bank_amount = 120.34;
+	static boolean isNight = false;
+	static final double limit_amount = 40000; // Constant
+	
+	public static void main(String[] args) {
+		Scanner scan = new Scanner(System.in);
+		System.out.println("- Your want? ");
+		System.out.println("- [1] Deposit\n- [2] Withdraw\n- [3] View your amount bank");
+		short options = (short) scan.nextShort();
+		
+		switch (options) {
+			case 1:
+				System.out.println("- Do you want to deposit?");
+				double amount_deposit = (double) scan.nextDouble();
+				deposit(amount_deposit);
+			case 2:
+				System.out.println("- How much do you want to withdraw? $");
+				double amount_withdraw = (double) scan.nextDouble();
+				withdraw(amount_withdraw);
+			case 3:
+				viewBankAmount();
+		}
+
+		
+		scan.close();
+	}
+	public static void deposit(double amount) {
+		if ((amount >= 50 || amount <= limit_amount) || (isNight != false)) {
+			bank_amount += amount; // Deposit this amount if isNight is != false
+			System.out.println("Deposit with success in Day, this amount -> $" + amount);
+		} else if ((amount >= 50 || amount <= 1000) || (isNight == true)){ // Deposit this amount if Night
+			bank_amount += amount;
+			System.out.println("Deposit with success in Night, this amount -> $" + amount);
+		} else {
+			System.out.println("This amount is not valid. Big amount for night OR Limited amount!");
+		}
+	}
+	private static void withdraw(double amount) {
+		if ((bank_amount >= amount || amount <= 100000) || (isNight != false)) {
+			bank_amount -= amount;
+			System.out.println("Withdown Success in Day, this amount -> $" + amount);
+		} else if ((bank_amount >= amount || amount <= limit_amount) || (isNight == true)) {
+			bank_amount -= amount;
+			System.out.println("Withdraw Success in Night, this amount -> $" + amount);
+		} else if (!(bank_amount >= amount)) {
+			System.out.println("Your don't have that amount in the Bank.");
+		} else {
+			System.out.println("This amount is not valid. Big amount for night, Limited amount or Your amount is not enough");
+		}
+	}
+	public static void viewBankAmount() {
+		System.out.println("The amount bank is -> $"+bank_amount);
+	}
+}

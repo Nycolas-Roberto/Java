@@ -1,0 +1,28 @@
+package arrays;
+
+public class User {
+	private String firstName;
+	private String lastName;
+	private String password;
+	
+	public void setFirstname(String firstname) {
+		this.firstName = firstname;
+	}
+	public String getFirstname() {
+		return this.firstName;
+	}
+
+	public void setLastname(String lastname) {
+		this.lastName = lastname;
+	}
+	public String getLastname() {
+		return this.lastName;
+	}
+	
+	public void setPassword(String password) {
+		this.password = password;
+	}
+	public String getPassword() {
+		return this.password;
+	}
+}

@@ -1,0 +1,40 @@
+package bank.account;
+
+import java.util.ArrayList;
+import java.util.List;
+
+public class Bank {
+	private String agency;
+	private String name;
+	private List<User> users = new ArrayList<>();
+	private int lastuser = 1;
+	
+	public Bank(String agency) {
+		this.agency = agency;
+		this.users = new ArrayList<User>();
+	}
+
+	public User generateUser(String email, String password, String name) {
+		User user = new User(email, password, name, this.lastuser);
+		this.lastuser++;
+		return user;
+	}
+	
+	public void insertAccount(User user) {
+		users.add(user);
+	}
+	
+	public List<User> getAccounts() {
+		return users;
+	}
+	
+	public void outputBalanceTotal() {
+		double total = 0;
+		for(User user : users) {
+			double balance = user.getAmount();
+			total += balance;
+			
+		}
+		System.out.println("Total no banco: " + total);
+	}
+}

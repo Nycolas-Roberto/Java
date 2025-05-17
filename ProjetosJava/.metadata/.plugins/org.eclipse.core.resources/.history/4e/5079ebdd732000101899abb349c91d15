@@ -1,0 +1,28 @@
+package eletronic.box;
+
+import java.util.Scanner;
+// \|
+public class EletronicBox {
+
+	static double bank_amount = 120.34;
+	static boolean isNight = false;
+	static double limit_amount = 40000;
+	
+	public static void main(String[] args) {
+		Scanner scan = new Scanner(System.in);
+		System.out.println("- How much do you want to withdraw? $");
+		double amount_withdraw = scan.nextDouble();
+		
+		scan.close();
+	}
+	public static void deposit(double amount) {
+		if ((amount >= 50 || amount <= 10000) || (isNight != false)) {
+			bank_amount += amount; // Deposit this amount if isNight is != false
+		} else if ((amount >= 50 || amount <= 1000) || (isNight == true)){ // Deposit this amount if Night
+			
+		} else if ((amount >= 50 || amount <= ))
+	}
+	private static void withdraw(double amount) {
+		
+	}
+}

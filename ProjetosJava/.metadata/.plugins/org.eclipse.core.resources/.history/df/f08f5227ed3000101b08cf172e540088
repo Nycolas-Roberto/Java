@@ -1,0 +1,14 @@
+package bank.account;
+
+import java.util.ArrayList;
+import java.util.List;
+
+public class Bank {
+	private String agency;
+	private String name;
+	private List<User> users = new ArrayList<>();
+	
+	public Bank(String agency) {
+		this.agency = agency;
+	}
+}

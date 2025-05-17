@@ -1,0 +1,27 @@
+package propriedadeStatic;
+
+public class App {
+
+	public static void main(String[] args) {
+		User userA = new User("Nycolas", "Roberto");
+		
+		
+		
+		userA.setCount(1);
+		userA.setCount(1);
+		userA.setCount(1);
+		User userC = new User("Tiago", "Aguiar");
+		userC.setCount(2);
+		userC.setCount(2);
+		userC.setCount(2);
+		
+		User.setCountt(2);
+		User.setCountt(2); // Método que não necessita de uma instância, pois o método percente à classe
+		System.out.println(userA.getCount());
+		System.out.println(userC.getCount());
+		
+		System.out.println(User.getCountt());
+		
+	}
+
+}

@@ -1,0 +1,15 @@
+package eletronic.box;
+
+import java.util.Scanner;
+
+public class EletronicBox {
+
+	public static void main(String[] args) {
+		Scanner scan = new Scanner(System.in);
+		System.out.println("- How much do you want to withdraw? $");
+		double withdraw = scan.nextDouble();
+		
+		scan.close();
+	}
+
+}

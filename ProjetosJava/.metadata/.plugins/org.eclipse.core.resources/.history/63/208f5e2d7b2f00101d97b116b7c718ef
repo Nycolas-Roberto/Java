@@ -1,0 +1,248 @@
+package bank.account;
+
+
+
+public class User {
+	private String email;
+	private String password;
+	private String agency;
+	private String name;
+	private double amount;
+	private boolean isLogged;
+	private boolean isNight;
+	private String userType;
+	private boolean returned;
+	
+	private static final int MAX_LENGTH = 12;
+	
+	public User(String email, String password, String name) {
+		if((email.isEmpty() == false && password.isEmpty() == false) && (name.isEmpty() == false && name.length() <= MAX_LENGTH)) {
+			this.email = email;
+			this.password = password;
+			this.name = name;
+			this.amount = 0;
+			this.isLogged = false;
+			this.isNight = false;
+			this.userType = "Gold";
+			this.agency = "00001-01";
+		} else {
+			System.out.println("[!] - Error, please inform a E-mail and a Password.");
+		}
+	}
+	public boolean setName(String name) {
+		if(name.length() <= MAX_LENGTH && name.isEmpty() == false) {
+			this.name = name;
+			return true;
+		} else {
+			return false;
+		}
+	}
+	public void setIsLogged(boolean value) {
+		if(value == true) {
+			this.isLogged = true;
+		} else { 
+			this.isLogged = false;
+		}
+	}
+	public boolean getIsLogged() {
+		return this.isLogged;
+	}
+	
+	public void setIsNight(boolean value) {
+		if(value == true) {
+			this.isNight = true;
+		} else {
+			this.isNight = false;
+		}
+	}
+	public boolean getIsNight() {
+		return this.isNight;
+	}
+	
+
+	
+	private void setReturned(boolean value) {
+		this.returned = value;
+	}
+	private boolean getReturned() {
+		return this.returned;
+	}
+	
+	public boolean deposit(double amount) {
+		if(getIsLogged() == true) {
+			switch (this.userType) {
+				case "Gold":
+					if(amount >= 10 && amount <= 10000) {
+						this.amount += amount;
+						setReturned(true);
+					} else {
+						System.out.println("[!] - Error, this amount is invalid. Please to type a value greater than $ 9.00 and less than or equal to $ 10000.00");
+						setReturned(false);
+					}
+				case "Diamond":
+					if(amount >= 10 && amount <= 50000) {
+						this.amount += amount;
+						setReturned(true);
+					} else {
+						System.out.println("[!] - Error, this amount is invalid. Please to type a value greater than $ 9.00 and less than or equal to $ 50000.00");
+						setReturned(false);
+					}
+				case "Emerald":
+					if(amount >= 10 && amount <= 100000) {
+						this.amount += amount;
+						setReturned(true);
+					} else {
+						System.out.println("[!] - Error, this amount is invalid. Please to type a value greater than $ 9.00 and less than or equal to $ 100000.00");
+						setReturned(false);
+					}
+				case "Black":
+					if(amount >= 10 && amount <= 500000) {
+						this.amount += amount;
+						setReturned(true);
+					} else {
+						System.out.println("[!] - Error, this amount is invalid. Please to type a value greater than $ 9.00 and less than or equal to $ 500000.00");
+						setReturned(false);
+					}
+				default:
+					if(amount >= 10 && amount <= 10000) {
+						this.amount += amount;
+						setReturned(true);
+					} else {
+						System.out.println("[!] - Error, this amount is invalid. Please to type a value greater than $ 9.00 and less than or equal to $ 10000.00");
+						setReturned(false);
+					}
+			}
+		} else {
+			System.out.println("[!] - Error, please login.");
+		}
+		return getReturned();
+	}
+
+	
+	public void withdraw(double amount) {
+		if(getIsLogged() == true) {
+			switch (this.userType) {
+				case "Gold":
+					this.withdraw_gold(amount);
+				case "Diamond":
+					this.withdraw_diamond(amount);
+				case "Emerald":
+					this.withdrawn_emerald(amount);
+				case "Black":
+					this.withdrawn_black(amount);
+				default:
+					this.withdraw_gold(amount);
+			}
+		} else {
+			System.out.println("[!] - Error, please login.");
+		}
+	}
+	
+	
+	private void withdraw_gold(double amount) {
+		if(this.isNight == true) { // This night: Amount <= 1000
+			if(amount >= 10 && amount <= 1000) {
+				if(amount <= this.amount) {
+					System.out.println("[$] - Success, drawn amount: $ " + amount);
+					this.amount -= amount;
+				} else {
+					System.out.println("[!] - Error, this amount is greater than what you currently have in your account.");
+				}
+			} else {
+				System.out.println("[!] - Error, this amount is invalid. Please to type a value greater than $ 9.00 and less than or equal to $ 1000.00 because is Night.");
+			}	
+		} else { // This day: Amount <= 10000
+			if(amount >= 10 && amount <= 10000) {
+				if(amount <= this.amount) {
+					System.out.println("[$] - Success, drawn amount: $ " + amount);
+					this.amount -= amount;
+				} else {
+					System.out.println("[!] - Error, this amount is greater than what you currently have in your account.");
+				}
+			} else {
+				System.out.println("[!] - Error, this amount is invalid. Please to type a value greater than $ 9.00 and less than or equal to $ 10000.00");
+			}
+		}
+	}
+	private void withdraw_diamond(double amount) {
+		if(this.isNight == true) { // This night: Amount <= 1000
+			if(amount >= 10 && amount <= 1000) {
+				if(amount <= this.amount) {
+					System.out.println("[$] - Success, drawn amount: $ " + amount);
+					this.amount -= amount;
+				} else {
+					System.out.println("[!] - Error, this amount is greater than what you currently have in your account.");
+				}
+			} else {
+				System.out.println("[!] - Error, this amount is invalid. Please to type a value greater than $ 9.00 and less than or equal to $ 1000.00 because is Night.");
+			}	
+		} else { // This day: Amount <= 50000
+			if(amount >= 10 && amount <= 50000) {
+				if(amount <= this.amount) {
+					System.out.println("[$] - Success, drawn amount: $ " + amount);
+					this.amount -= amount;
+				} else {
+					System.out.println("[!] - Error, this amount is greater than what you currently have in your account.");
+				}
+			} else {
+				System.out.println("[!] - Error, this amount is invalid. Please to type a value greater than $ 9.00 and less than or equal to $ 10000.00");
+			}
+		}
+	}
+	private void withdrawn_emerald(double amount) {
+		if(this.isNight == true) { // This night: Amount <= 1000
+			if(amount >= 10 && amount <= 1000) {
+				if(amount <= this.amount) {
+					System.out.println("[$] - Success, drawn amount: $ " + amount);
+					this.amount -= amount;
+				} else {
+					System.out.println("[!] - Error, this amount is greater than what you currently have in your account.");
+				}
+			} else {
+				System.out.println("[!] - Error, this amount is invalid. Please to type a value greater than $ 9.00 and less than or equal to $ 1000.00 because is Night.");
+			}	
+		} else { // This day: Amount <= 100000
+			if(amount >= 10 && amount <= 100000) {
+				if(amount <= this.amount) {
+					System.out.println("[$] - Success, drawn amount: $ " + amount);
+					this.amount -= amount;
+				} else {
+					System.out.println("[!] - Error, this amount is greater than what you currently have in your account.");
+				}
+			} else {
+				System.out.println("[!] - Error, this amount is invalid. Please to type a value greater than $ 9.00 and less than or equal to $ 100000.00");
+			}
+		}
+	}
+	private void withdrawn_black(double amount) {
+		if(this.isNight == true) { // This night: Amount <= 1000
+			if(amount >= 10 && amount <= 1000) {
+				if(amount <= this.amount) {
+					System.out.println("[$] - Success, drawn amount: $ " + amount);
+					this.amount -= amount;
+				} else {
+					System.out.println("[!] - Error, this amount is greater than what you currently have in your account.");
+				}
+			} else {
+				System.out.println("[!] - Error, this amount is invalid. Please to type a value greater than $ 9.00 and less than or equal to $ 1000.00 because is Night.");
+			}	
+		} else { // This day: Amount <= 500000
+			if(amount >= 10 && amount <= 500000) {
+				if(amount <= this.amount) {
+					System.out.println("[$] - Success, drawn amount: $ " + amount);
+					this.amount -= amount;
+				} else {
+					System.out.println("[!] - Error, this amount is greater than what you currently have in your account.");
+				}
+			} else {
+				System.out.println("[!] - Error, this amount is invalid. Please to type a value greater than $ 9.00 and less than or equal to $ 500000.00");
+			}
+		}
+	}
+	
+	public double getAmount() {
+		return this.amount;
+	}
+	
+	
+}

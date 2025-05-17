@@ -1,0 +1,88 @@
+package bank.account;
+
+import java.util.Scanner;
+
+// 01: Create a account (agency, account, name)
+//     - Limit a characters name = 12
+public class App {
+
+	public static void main(String[] args) {
+		// This project is a Bank Account for user
+		// ||
+		
+		Scanner input = new Scanner(System.in);
+		Bank interbank = new Bank("00001-01");
+		
+		while(true) {
+
+			System.out.println("[C] - Create a new account?\n"
+					+ "[E] - Exit");
+			String op001 = (String) input.nextLine();
+			if(op001.equals("C")) {
+				System.out.println("[>>] Your e-mail: ");
+				String email = (String) input.nextLine();
+				System.out.println("[>>] Your password: ");
+				String password = (String) input.nextLine();
+				System.out.println("[>>] Your name: ");
+				String name = (String) input.nextLine();
+				
+				User user = interbank.generateUser(email, password, name, 1);
+				if(user.getReturned() == true) {
+					boolean started = true;
+					while(started == true) {
+						System.out.println("Welcome to the bank, options:\n"
+								+ "[1] - Withdrawn\n"
+								+ "[2] - Deposit\n"
+								+ "[3] - View balance\n"
+								+ "[4] - View e-mail\n"
+								+ "[5] - View name\n"
+								+ "[6] - View User Type\n"
+								+ "[7] - View agency\n"
+								+ "[8] - View is Night\n"
+								+ "[9] - View password\n"
+								+ "[10] - View account number\n"
+								+ "[0] - Exit bank");
+						int option = (int) input.nextInt();
+						switch (option) {
+						case 1:
+							if(user.getIsLogged()) {
+								System.out.println("[<<] Amount: ");
+								double drawn = (double) input.nextDouble();
+								user.withdraw(drawn);
+							} else {
+								System.out.println("[!] - Error, please login.");
+							}
+							break;
+						case 2:
+							if(user.getIsLogged()) {
+								System.out.println("[>>] Amount: ");
+								double deposit = (double) input.nextDouble();
+								user.deposit(deposit);
+							} else {
+								System.out.println("[!] - Error, please login.");
+							}
+							break;
+						case 3: System.out.println(user.getAmount()); break;
+						case 4: System.out.println(user.getEmail()); break;
+						case 5: System.out.println(user.getName()); break;
+						case 6: System.out.println(user.getUserType()); break;
+						case 7: System.out.println(user.getAgency()); break;
+						case 8: System.out.println(user.getIsNight()); break;
+						case 9: System.out.println(user.getPassword()); break;
+						case 10: System.out.println(user.getAccountNumber()); break;
+						case 0: started=false;break;
+						default: started=false;
+						}
+					}
+				} else {
+					System.out.println("[!] - Error, please try again");
+				}
+			} else {
+				System.out.println("Bye bye!");
+				break;
+			}
+		}
+		input.close();
+	}
+
+}

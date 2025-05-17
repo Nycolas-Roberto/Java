@@ -1,0 +1,26 @@
+package propriedadeStatic;
+
+public class App {
+
+	public static void main(String[] args) {
+		User userA = new User("Nycolas", "Roberto");
+		
+		
+		// Métodos static que pertencem a minha classe User, que modifica a variável que também percente à classe
+		User.setCount(1);
+		User.setCount(1);
+		User.setCount(1);
+		User userC = new User("Tiago", "Aguiar");
+		User.setCount(2);
+		User.setCount(2);
+		User.setCount(2);
+		
+		
+
+		System.out.println(userA.getCount());
+		System.out.println(userC.getCount());
+		
+		
+	}
+
+}
